@@ -8,10 +8,12 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
 	"io"
 	"net/http"
 	"net/url"
+	"strings"
+
+	"github.com/gin-gonic/gin"
 )
 
 func getSubInfo(realUrl string) any {
@@ -33,13 +35,13 @@ func getSubInfo(realUrl string) any {
 func setupRouter() *gin.Engine {
 	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
-	r.GET("/subinfo", func(c *gin.Context) {
+	r.GET("/getinfo", func(c *gin.Context) {
 		firstUrl := c.Query("url")
 		realUrl, _ := url.QueryUnescape(firstUrl)
-		if str, ok := getSubInfo(realUrl).(string); ok {
+		if str, ok := getSubInfo(strings.Replace(realUrl,"feiyang","repl",-1)).(string); ok {
 			c.String(http.StatusOK, str)
 		} else {
-			c.String(http.StatusOK, "订阅获取失败")
+			c.String(http.StatusOK, "获取失败")
 		}
 	})
 	return r
