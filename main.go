@@ -17,7 +17,7 @@ import (
 func getSubInfo(realUrl string) any {
 	client := &http.Client{}
 	r, _ := http.NewRequest("GET", realUrl, nil)
-	r.Header.Add("user-agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36")
+	r.Header.Add("user-agent", "ClashForAndroid/2.5.12")
 	r.Header.Add("upgrade-insecure-requests", "1")
 	r.Header.Add("Accept", "*/*")
 	r.Header.Add("Connection", "keep-alive")
